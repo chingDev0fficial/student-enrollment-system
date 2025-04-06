@@ -42,3 +42,22 @@
     font-size: 5rem;
     color: #28a745;
 }
+
+/* Error message styling */
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Style for Django error messages which use 'error' tag but Bootstrap uses 'danger' */
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Make error text inside any container appear red */
+.text-error {
+    color: #dc3545 !important;
+}
