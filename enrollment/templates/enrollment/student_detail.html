@@ -41,23 +41,65 @@
               <th>Birthday:</th>
               <td>{{ student.birthday|date:'F d, Y' }}</td>
             </tr>
+            <tr>
+              <th>Address:</th>
+              <td>{{ student.address|linebreaks }}</td>
+            </tr>
+          </table>
+
+          <h4 class="text-primary mt-4">Academic Information</h4>
+          <table class="table table-borderless">
+            <tr>
+              <th width="150">School:</th>
+              <td>{{ student.school_name_graduated }}</td>
+            </tr>
           </table>
         </div>
         <div class="col-md-6">
-          <h4 class="text-primary">Additional Information</h4>
+          <h4 class="text-primary">Parent/Guardian Information</h4>
           <table class="table table-borderless">
             <tr>
-              <th width="150">Address:</th>
-              <td>{{ student.address|linebreaks }}</td>
+              <th width="150">Name:</th>
+              <td>{{ student.parent_full_name }}</td>
             </tr>
             <tr>
-              <th>Parent Info:</th>
-              <td>{{ student.parent_information|linebreaks }}</td>
+              <th>Relationship:</th>
+              <td>{{ student.relationship }}</td>
             </tr>
             <tr>
-              <th>School:</th>
-              <td>{{ student.school_name_graduated }}</td>
+              <th>Phone:</th>
+              <td>{{ student.parent_phone }}</td>
             </tr>
+            {% if student.parent_email %}
+              <tr>
+                <th>Email:</th>
+                <td>{{ student.parent_email }}</td>
+              </tr>
+            {% endif %}
+            {% if student.parent_occupation %}
+              <tr>
+                <th>Occupation:</th>
+                <td>{{ student.parent_occupation }}</td>
+              </tr>
+            {% endif %}
+            {% if student.parent_workplace %}
+              <tr>
+                <th>Workplace:</th>
+                <td>{{ student.parent_workplace }}</td>
+              </tr>
+            {% endif %}
+            {% if student.parent_address %}
+              <tr>
+                <th>Address:</th>
+                <td>{{ student.parent_address|linebreaks }}</td>
+              </tr>
+            {% endif %}
+            {% if student.alternate_contact %}
+              <tr>
+                <th>Alt. Contact:</th>
+                <td>{{ student.alternate_contact }}</td>
+              </tr>
+            {% endif %}
           </table>
         </div>
       </div>

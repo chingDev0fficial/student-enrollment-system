@@ -6,6 +6,9 @@ app_name = "enrollment"
 urlpatterns = [
     # Landing page
     path("", views.index, name="index"),
+    # Authentication
+    path("login/", views.login_view, name="login"),
+    path("logout/", views.logout_view, name="logout"),
     # Student enrollment
     path("enroll/", views.enroll_student, name="enroll"),
     path("enrollment-success/", views.enrollment_success, name="enrollment-success"),

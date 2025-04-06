@@ -8,8 +8,19 @@
   </style>
 {% endblock %} {% block content %}
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Admin Dashboard</h1>
-    <a href="{% url 'enrollment:enroll' %}" class="btn btn-primary">Add New Student</a>
+    <h1>
+      {% if user.is_staff %}
+        Admin Dashboard
+      {% else %}
+        Moderator Dashboard
+      {% endif %}
+    </h1>
+    <div class="d-flex gap-2">
+      {% if user.is_staff %}
+        <a href="{% url 'admin:index' %}" class="btn btn-secondary">Django Admin</a>
+      {% endif %}
+      <a href="{% url 'enrollment:enroll' %}" class="btn btn-primary">Add New Student</a>
+    </div>
   </div>
 
   <div class="card shadow mb-4">

@@ -156,6 +156,9 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = "DENY"
 
+# Configure logout redirect for Django admin
+LOGOUT_REDIRECT_URL = "/"
+
 # Add logging configuration
 LOGGING = {
     "version": 1,

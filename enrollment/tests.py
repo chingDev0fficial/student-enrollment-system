@@ -5,10 +5,10 @@ from datetime import date
 
 
 class StudentModelTest(TestCase):
-    """Tests for the Student model."""
+    # Tests for the Student model.
 
     def setUp(self):
-        """Create a sample student record for testing."""
+        # Create a sample student record for testing.
         self.student = Student.objects.create(
             first_name="John",
             middle_name="Robert",
@@ -21,12 +21,12 @@ class StudentModelTest(TestCase):
         )
 
     def test_student_creation(self):
-        """Test that we can create a student record."""
+        # Test that we can create a student record.
         self.assertEqual(self.student.first_name, "John")
         self.assertEqual(self.student.email, "john.doe@example.com")
 
     def test_get_full_name(self):
-        """Test the get_full_name method."""
+        # Test the get_full_name method.
         self.assertEqual(self.student.get_full_name(), "John Robert Doe")
 
         # Test without middle name
@@ -35,33 +35,33 @@ class StudentModelTest(TestCase):
         self.assertEqual(self.student.get_full_name(), "John Doe")
 
     def test_get_absolute_url(self):
-        """Test the get_absolute_url method."""
+        # Test the get_absolute_url method.
         expected_url = reverse("enrollment:student-detail", args=[self.student.id])
         self.assertEqual(self.student.get_absolute_url(), expected_url)
 
 
 class EnrollmentViewsTest(TestCase):
-    """Tests for enrollment views."""
+    # Tests for enrollment views.
 
     def setUp(self):
-        """Initialize the test client."""
+        # Initialize the test client.
         self.client = Client()
 
     def test_index_view(self):
-        """Test the index view."""
+        # Test the index view.
         response = self.client.get(reverse("enrollment:index"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "enrollment/index.html")
 
     def test_enrollment_form_view_get(self):
-        """Test the enrollment form view (GET)."""
+        # Test the enrollment form view (GET).
         response = self.client.get(reverse("enrollment:enroll"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "enrollment/enroll.html")
         self.assertContains(response, "Student Enrollment Form")
 
     def test_enrollment_form_submission(self):
-        """Test submission of the enrollment form."""
+        # Test submission of the enrollment form.
         # Data for form submission
         data = {
             "first_name": "Jane",
@@ -84,7 +84,7 @@ class EnrollmentViewsTest(TestCase):
         self.assertTrue(Student.objects.filter(email="jane.smith@example.com").exists())
 
     def test_admin_dashboard_view(self):
-        """Test the admin dashboard view."""
+        # Test the admin dashboard view.
         # Create some test students
         Student.objects.create(
             first_name="Alice",
@@ -105,7 +105,7 @@ class EnrollmentViewsTest(TestCase):
         self.assertTrue(len(response.context["students"]) > 0)
 
     def test_search_functionality(self):
-        """Test the search functionality."""
+        # Test the search functionality.
         # Create test students
         Student.objects.create(
             first_name="Michael",

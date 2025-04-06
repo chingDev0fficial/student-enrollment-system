@@ -4,7 +4,7 @@ from .models import Student
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    """Admin view for Student"""
+    # Admin view for Student
 
     list_display = ("first_name", "last_name", "email", "date_enrolled")
     list_filter = ("date_enrolled", "school_name_graduated")
@@ -18,7 +18,21 @@ class StudentAdmin(admin.ModelAdmin):
         ),
         ("Address Information", {"fields": ("address",)}),
         ("Academic Information", {"fields": ("school_name_graduated",)}),
-        ("Parent Information", {"fields": ("parent_information",)}),
+        (
+            "Parent Information",
+            {
+                "fields": (
+                    "parent_full_name",
+                    "relationship",
+                    "parent_phone",
+                    "parent_email",
+                    "parent_occupation",
+                    "parent_workplace",
+                    "parent_address",
+                    "alternate_contact",
+                )
+            },
+        ),
         (
             "System Information",
             {"fields": ("date_enrolled", "last_updated"), "classes": ("collapse",)},
