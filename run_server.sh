@@ -28,6 +28,9 @@ else
     log_message "No requirements file found, skipping dependency installation."
 fi
 
+log_message "Building static files..."
+python manage.py collectstatic --noinput || handle_error "Failed to collect static files"
+
 log_message "Running migrations..."
 python manage.py makemigrations || handle_error "Failed to make migrations"
 python manage.py migrate || handle_error "Failed to apply migrations"
