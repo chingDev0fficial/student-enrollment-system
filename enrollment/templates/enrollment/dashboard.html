@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% block title %}
+  Admin Dashboard
+{% endblock %} {% block extra_css %}
+  <style>
+    .search-form {
+      margin-bottom: 20px;
+    }
+  </style>
+{% endblock %} {% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Admin Dashboard</h1>
+    <a href="{% url 'enrollment:enroll' %}" class="btn btn-primary">Add New Student</a>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Student Records</h5>
+      <span class="badge bg-light text-dark">Total: {{ total_students }}</span>
+    </div>
+    <div class="card-body">
+      <form action="{% url 'enrollment:search-students' %}" method="get" class="search-form">
+        <div class="input-group mb-3">
+          <input type="text" name="q" class="form-control" placeholder="Search by name, email, or school..." aria-label="Search" />
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+      </form>
+
+      {% if students %}
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>School Graduated</th>
+                <th>Date Enrolled</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for student in students %}
+                <tr>
+                  <td>{{ student.get_full_name }}</td>
+                  <td>{{ student.email }}</td>
+                  <td>{{ student.school_name_graduated }}</td>
+                  <td>{{ student.date_enrolled|date:'M d, Y' }}</td>
+                  <td>
+                    <div class="btn-group" role="group">
+                      <a href="{% url 'enrollment:student-detail' student.id %}" class="btn btn-sm btn-info">View</a>
+                      <a href="{% url 'enrollment:student-update' student.id %}" class="btn btn-sm btn-warning">Edit</a>
+                      <a href="{% url 'enrollment:student-delete' student.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="alert alert-info">No students are currently enrolled in the system.</div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

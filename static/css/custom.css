@@ -1,0 +1,44 @@
+/* Custom styles for the Student Enrollment System */
+
+/* Add active state to navbar items */
+.navbar .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Style for student cards */
+.student-card {
+    transition: transform 0.3s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom form control focus */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Custom button hover effects */
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+/* Dashboard table styles */
+.dashboard-table th {
+    background-color: #f8f9fa;
+}
+
+.dashboard-table tr:hover {
+    background-color: #f1f8ff;
+}
+
+/* Success message styling */
+.enrollment-success-icon {
+    font-size: 5rem;
+    color: #28a745;
+}

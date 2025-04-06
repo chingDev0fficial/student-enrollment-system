@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block title %}
+  Student Enrollment System - Home
+{% endblock %} {% block content %}
+  <div class="jumbotron bg-light p-5 rounded">
+    <h1 class="display-4">Welcome to Student Enrollment System</h1>
+    <p class="lead">A streamlined platform for managing student enrollments and records.</p>
+    <hr class="my-4" />
+    <p>Use this system to enroll as a new student or manage existing student records if you're an administrator.</p>
+    <div class="d-flex gap-2">
+      <a class="btn btn-primary btn-lg" href="{% url 'enrollment:enroll' %}" role="button">Enroll Now</a>
+      <a class="btn btn-outline-secondary btn-lg" href="{% url 'enrollment:admin-dashboard' %}" role="button">Admin Dashboard</a>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <div class="card mb-4 h-100">
+        <div class="card-body">
+          <h5 class="card-title">Easy Registration</h5>
+          <p class="card-text">Our streamlined enrollment process makes it easy for new students to register with just a simple form.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 h-100">
+        <div class="card-body">
+          <h5 class="card-title">Admin Management</h5>
+          <p class="card-text">Administrators can easily view, update, and manage all student records from a central dashboard.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 h-100">
+        <div class="card-body">
+          <h5 class="card-title">Efficient Search</h5>
+          <p class="card-text">Quickly find student information with our powerful search functionality.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block title %}
+  Enrollment Successful
+{% endblock %}
+{% block content %}
+  <div class="card shadow">
+    <div class="card-header bg-success text-white">
+      <h2 class="mb-0">Enrollment Successful!</h2>
+    </div>
+    <div class="card-body text-center">
+      <div class="mb-4">
+        <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem"></i>
+        <p class="display-4 mt-3">Thank You!</p>
+      </div>
+      <p class="lead">Your enrollment has been successfully processed and recorded in our system.</p>
+      <p>You will receive a confirmation email with further instructions.</p>
+      <div class="mt-4">
+        <a href="{% url 'enrollment:index' %}" class="btn btn-primary">Return to Home</a>
+        <a href="{% url 'enrollment:enroll' %}" class="btn btn-outline-secondary ms-2">Enroll Another Student</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

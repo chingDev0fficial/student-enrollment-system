@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %}
+  Student Enrollment - Register
+{% endblock %} {% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">Student Enrollment Form</h2>
+        </div>
+        <div class="card-body">
+          <p class="lead">Please fill in the form below to enroll as a student.</p>
+          <hr />
+          {% crispy form %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

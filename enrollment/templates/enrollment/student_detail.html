@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% block title %}
+  Student Details - {{ student.get_full_name }}
+{% endblock %} {% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Student Information</h1>
+    <div>
+      <a href="{% url 'enrollment:admin-dashboard' %}" class="btn btn-outline-secondary">Back to Dashboard</a>
+      <a href="{% url 'enrollment:student-update' student.id %}" class="btn btn-warning">Edit</a>
+      <a href="{% url 'enrollment:student-delete' student.id %}" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">{{ student.get_full_name }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="text-primary">Personal Information</h4>
+          <table class="table table-borderless">
+            <tr>
+              <th width="150">First Name:</th>
+              <td>{{ student.first_name }}</td>
+            </tr>
+            {% if student.middle_name %}
+              <tr>
+                <th>Middle Name:</th>
+                <td>{{ student.middle_name }}</td>
+              </tr>
+            {% endif %}
+            <tr>
+              <th>Last Name:</th>
+              <td>{{ student.last_name }}</td>
+            </tr>
+            <tr>
+              <th>Email:</th>
+              <td>{{ student.email }}</td>
+            </tr>
+            <tr>
+              <th>Birthday:</th>
+              <td>{{ student.birthday|date:'F d, Y' }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h4 class="text-primary">Additional Information</h4>
+          <table class="table table-borderless">
+            <tr>
+              <th width="150">Address:</th>
+              <td>{{ student.address|linebreaks }}</td>
+            </tr>
+            <tr>
+              <th>Parent Info:</th>
+              <td>{{ student.parent_information|linebreaks }}</td>
+            </tr>
+            <tr>
+              <th>School:</th>
+              <td>{{ student.school_name_graduated }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr />
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <h5>
+            Enrollment Date:
+            <span class="text-muted">{{ student.date_enrolled|date:'F d, Y' }}</span>
+          </h5>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <h5>
+            Last Updated:
+            <span class="text-muted">{{ student.last_updated|date:'F d, Y g:i A' }}</span>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

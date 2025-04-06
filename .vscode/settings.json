@@ -1,0 +1,37 @@
+{
+  "black-formatter.args": ["--line-length", "130"],
+  "editor.formatOnSave": true,
+  "[django-html]": {
+    "editor.defaultFormatter": "junstyle.vscode-django-support",
+    "editor.wordWrapColumn": 100
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  // Tailwind settings
+  "css.validate": false,
+  "tailwindCSS.emmetCompletions": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  // Theme settings
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Default Dark Modern",
+  // Git settings
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "files.exclude": {
+    "**/.staticfiles/**": false,
+    "**/.venv/**": true,
+    "**/__pycache__/**": true,
+    "**/migrations/**": true
+  },
+  "github.copilot.chat.edits.temporalContext.enabled": false
+}

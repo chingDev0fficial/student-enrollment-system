@@ -1,0 +1,9 @@
+Django
+python-dotenv
+Pillow
+django-crispy-forms
+crispy-bootstrap5
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary
