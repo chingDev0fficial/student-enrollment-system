@@ -151,12 +151,16 @@ chmod +x build.sh
 
 1. Create a superuser for the Django admin:
 
-   - Go to your Render dashboard
-   - Open the web service for your application
-   - Navigate to the "Shell" tab
-   - Run the command:
+   - Option 1: Use the Django management command:
+
      ```bash
      python manage.py createsuperuser
+     ```
+
+   - Option 2: Use the provided shell script:
+     ```bash
+     chmod +x create_superuser.sh
+     ./create_superuser.sh -u admin -e admin@example.com -p your_secure_password
      ```
 
 2. Regularly back up your database

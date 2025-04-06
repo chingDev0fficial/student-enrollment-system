@@ -9,7 +9,10 @@ from .forms import StudentForm
 
 def is_moderator(user):
     # Check if user is a moderator or staff.
-    return user.is_authenticated and user.is_staff
+    if not user.is_authenticated:
+        return False
+    # Allow either staff users OR users with the specific moderator permission
+    return user.is_staff or user.has_perm("enrollment.moderator_access")
 
 
 # Landing page view
