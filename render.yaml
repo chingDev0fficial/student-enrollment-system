@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: student-enrollment
+    env: python
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    startCommand: gunicorn student_enrollment.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DJANGO_DEBUG
+        value: False
+      - key: DJANGO_ALLOWED_HOSTS
+        value: .onrender.com
+      - key: DJANGO_SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
