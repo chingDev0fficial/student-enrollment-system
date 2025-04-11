@@ -27,6 +27,16 @@ if DEBUG:
     ALLOWED_HOSTS.insert(0, "localhost")
     ALLOWED_HOSTS.insert(0, "127.0.0.1")
 
+
+# Database Configuration
+DATABASES = {
+    "default": dj_database_url.config(
+        default="sqlite:///" + str(BASE_DIR / "db.sqlite3"),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+}
+
 # Application definition
 
 INSTALLED_APPS = [
