@@ -37,4 +37,4 @@ python manage.py migrate || handle_error "Failed to apply migrations"
 
 print_header "Starting Django Development Server"
 log_message "Server is now running. Press CTRL+C to stop."
-python manage.py runserver 0.0.0.0:3000 || handle_error "Failed to start development server"
+python manage.py runserver 0.0.0.0:8000 || handle_error "Failed to start development server"

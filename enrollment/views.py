@@ -18,7 +18,7 @@ def is_moderator(user):
 # Landing page view
 def index(request):
     # Display the landing page.
-    return render(request, "enrollment/index.html")
+    return render(request, "../templates/enrollment/index.html")
 
 
 # Student registration view
@@ -35,13 +35,13 @@ def enroll_student(request):
     else:
         form = StudentForm()
 
-    return render(request, "enrollment/enroll.html", {"form": form})
+    return render(request, "../templates/enrollment/enroll.html", {"form": form})
 
 
 # Enrollment success view
 def enrollment_success(request):
     # Display a success message after successful enrollment.
-    return render(request, "enrollment/enrollment_success.html")
+    return render(request, "../templates/enrollment/enrollment_success.html")
 
 
 # Authentication views
@@ -83,7 +83,7 @@ def admin_dashboard(request):
         "students": students,
         "total_students": students.count(),
     }
-    return render(request, "enrollment/dashboard.html", context)
+    return render(request, "../templates/enrollment/dashboard.html", context)
 
 
 # Student detail view
@@ -91,7 +91,7 @@ def admin_dashboard(request):
 def student_detail(request, pk):
     # Display details for a specific student.
     student = get_object_or_404(Student, pk=pk)
-    return render(request, "enrollment/student_detail.html", {"student": student})
+    return render(request, "../templates/enrollment/student_detail.html", {"student": student})
 
 
 # Student update view
@@ -114,7 +114,7 @@ def update_student(request, pk):
     else:
         form = StudentForm(instance=student)
 
-    return render(request, "enrollment/student_update.html", {"form": form, "student": student})
+    return render(request, "../templates/enrollment/student_update.html", {"form": form, "student": student})
 
 
 # Student delete view
@@ -129,7 +129,7 @@ def delete_student(request, pk):
         messages.success(request, f"{student_name} has been removed from the system.")
         return redirect("enrollment:admin-dashboard")
 
-    return render(request, "enrollment/student_delete.html", {"student": student})
+    return render(request, "../templates/enrollment/student_delete.html", {"student": student})
 
 
 # Search view
@@ -153,4 +153,4 @@ def search_students(request):
         "total_results": students.count() if query else 0,
     }
 
-    return render(request, "enrollment/search.html", context)
+    return render(request, "../templates/enrollment/search.html", context)
