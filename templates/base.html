@@ -3,70 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      {% block title %}
-        Student Enrollment System
-      {% endblock %}
-    </title>
+    <title>{% block title %} Student Enrollment System {% endblock %}</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
     <!-- Optional custom CSS -->
-    {% block extra_css %}
-
-    {% endblock %}
+    {% block extra_css %} {% endblock %}
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'enrollment:index' %}">Student Enrollment System</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <a class="navbar-brand" href="{% url 'enrollment:index' %}"
+          >Student Enrollment System</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="{% url 'enrollment:index' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'enrollment:enroll' %}">Enroll</a>
+              <a class="nav-link" href="{% url 'enrollment:enroll' %}"
+                >Enroll</a
+              >
             </li>
             {% if user.is_authenticated and user.is_staff %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'enrollment:admin-dashboard' %}">Admin Dashboard</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'enrollment:admin-dashboard' %}"
+                >Admin Dashboard</a
+              >
+            </li>
             {% endif %}
           </ul>
           <ul class="navbar-nav ms-auto">
             {% if user.is_authenticated %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {% if user.is_staff %}
-                    <span class="badge bg-danger me-1">Admin</span>
-                  {% elif user.is_staff %}
-                    <span class="badge bg-info me-1">Moderator</span>
-                  {% endif %}Welcome, {{ user.username }}
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a class="dropdown-item" href="{% url 'enrollment:admin-dashboard' %}">Dashboard</a>
-                  </li>
-                  {% if user.is_staff %}
-                    <li>
-                      <a class="dropdown-item" href="{% url 'admin:index' %}">Django Admin</a>
-                    </li>
-                  {% endif %}
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="{% url 'enrollment:logout' %}">Logout</a>
-                  </li>
-                </ul>
-              </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {% if user.is_staff %}
+                <span class="badge bg-danger me-1">Admin</span>
+                {% elif user.is_staff %}
+                <span class="badge bg-info me-1">Moderator</span>
+                {% endif %}Welcome, {{ user.username }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'enrollment:admin-dashboard' %}"
+                    >Dashboard</a
+                  >
+                </li>
+                {% if user.is_staff %}
+                <li>
+                  <a class="dropdown-item" href="{% url 'admin:index' %}"
+                    >Django Admin</a
+                  >
+                </li>
+                {% endif %}
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'enrollment:logout' %}"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
             {% else %}
-              <li class="nav-item">
-                <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-              </li>
+            <li class="nav-item">
+              <button
+                type="button"
+                class="btn btn-outline-light"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+              >
+                Login
+              </button>
+            </li>
             {% endif %}
           </ul>
         </div>
@@ -74,33 +112,54 @@
     </nav>
 
     <div class="container mt-4">
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
-        {% endfor %}
-      {% endif %} {% block content %}
-
-      {% endblock %}
+      {% if messages %} {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">
+        {{ message }}
+      </div>
+      {% endfor %} {% endif %} {% block content %} {% endblock %}
     </div>
 
     <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="loginModalLabel">Admin Login</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form method="post" action="{% url 'enrollment:login' %}">
               {% csrf_token %}
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  required
+                />
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required />
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  required
+                />
               </div>
               <input type="hidden" name="next" value="{{ request.path }}" />
               <div class="d-grid">
@@ -115,6 +174,9 @@
     <footer class="mt-5 py-3 bg-light">
       <div class="container text-center">
         <p>
+          <!-- add a list of developers here-->
+          Developed By: Chansai Caerlang, Kirby Jake Esms, and Rymer Adriel
+          Roluna<br />
           &copy;{% now 'Y' %}-Student Enrollment System. All rights reserved.
         </p>
       </div>
@@ -123,8 +185,6 @@
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Optional custom JavaScript -->
-    {% block extra_js %}
-
-    {% endblock %}
+    {% block extra_js %} {% endblock %}
   </body>
 </html>
